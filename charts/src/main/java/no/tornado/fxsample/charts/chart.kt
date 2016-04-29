@@ -18,7 +18,6 @@ class chartview : View() {
 
     init {
         with (root) {
-            padding
             row() {
                 piechart ("Imported Fruits") {
                     data("Grapefruit", 12.0)
