@@ -2,7 +2,6 @@ package no.tornado.fxsample.login
 
 import javafx.animation.KeyFrame
 import javafx.animation.Timeline
-import javafx.event.ActionEvent
 import javafx.event.EventHandler
 import javafx.scene.control.CheckBox
 import javafx.scene.control.PasswordField
