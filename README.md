@@ -1,3 +1,4 @@
+![TornadoFX Logo](graphics/tornado-fx-logo.png?raw=true "TornadoFX")
 # TornadoFX Samples
 
 Samples and best practice showcase for TornadoFX
