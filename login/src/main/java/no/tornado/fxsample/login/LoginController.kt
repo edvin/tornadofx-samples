@@ -18,11 +18,14 @@ class LoginController : Controller() {
         }
     }
 
-    fun showLoginScreen(message: String) {
+    fun showLoginScreen(message: String, shake: Boolean = false) {
         FX.primaryStage.hide()
         loginScreen.title = message
         loginScreen.openModal()
-        Platform.runLater { loginScreen.username.requestFocus() }
+        Platform.runLater {
+            loginScreen.username.requestFocus()
+            if (shake) loginScreen.shakeStage()
+        }
     }
 
     fun showWorkbench() {
@@ -48,7 +51,7 @@ class LoginController : Controller() {
 
                 showWorkbench()
             } else {
-                showLoginScreen("Login failed. Please try again.")
+                showLoginScreen("Login failed. Please try again.", true)
             }
         }
     }
