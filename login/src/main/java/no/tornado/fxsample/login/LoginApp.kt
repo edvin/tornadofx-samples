@@ -4,7 +4,7 @@ import javafx.stage.Stage
 import tornadofx.App
 import tornadofx.importStylesheet
 
-class SampleApp : App() {
+class LoginApp : App() {
     override val primaryView = Workbench::class
     val loginController: LoginController by inject()
 
