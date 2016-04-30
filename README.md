@@ -8,3 +8,4 @@ Samples and best practice showcase for TornadoFX
 ## Demos
 
 - [Login](https://github.com/edvin/tornadofx-samples/tree/master/login) - Login screen, remember me, main view only shown to logged in users.
+- [Charts](https://github.com/edvin/tornadofx-samples/tree/master/charts) - Show all barcharts that can be made.
