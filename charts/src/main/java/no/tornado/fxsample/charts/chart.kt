@@ -3,14 +3,21 @@ package charts
 import javafx.scene.chart.CategoryAxis
 import javafx.scene.chart.NumberAxis
 import javafx.scene.layout.GridPane
-import javafx.scene.layout.VBox
 import tornadofx.*
 
 /**
  * Created by ronsmits on 29/04/16.
  */
+
+fun main(args: Array<String>) {
+    Chart().main(args)
+}
+
 class Chart : App() {
     override val primaryView = chartview::class
+    fun main(args: Array<String>) {
+        launch(*args)
+    }
 }
 
 class chartview : View() {
@@ -38,7 +45,7 @@ class chartview : View() {
                         data("Mar", 27)
                     }
                 }
-                stackedbarchart("Stock again", CategoryAxis(), NumberAxis()){
+                stackedbarchart("Stock again", CategoryAxis(), NumberAxis()) {
                     series("Portfolio 1") {
                         data("Jan", 23)
                         data("Feb", 14)
@@ -50,13 +57,13 @@ class chartview : View() {
                         data("Mar", 27)
                     }
                 }
-                linechart("linechart", CategoryAxis(), NumberAxis()){
-                    series("month"){
+                linechart("linechart", CategoryAxis(), NumberAxis()) {
+                    series("month") {
                         data("jan", 10)
                         data("feb", 20)
-                        data("mar",5)
+                        data("mar", 5)
                     }
-                    series("week"){
+                    series("week") {
                         data("jan", 1)
                         data("feb", 2)
                     }
@@ -71,31 +78,31 @@ class chartview : View() {
                         data("Mar", 15, 8)
                     }
                 }
-                bubblechart("bubblechart", NumberAxis(), NumberAxis()){
+                bubblechart("bubblechart", NumberAxis(), NumberAxis()) {
                     series("series 1") {
                         data(1, 1, 1)
                         data(5, 5, 0.25)
                     }
                 }
-                areachart("area chart", CategoryAxis(), NumberAxis()){
+                areachart("area chart", CategoryAxis(), NumberAxis()) {
                     series("area 1") {
                         data("Jan", 10)
                         data("Feb", 5)
                         data("Mar", 8)
                     }
-                    series("area 2"){
+                    series("area 2") {
                         data("Jan", 0.5)
                         data("Feb", 3.25)
                         data("Mar", 6.75)
                     }
                 }
 
-                scatterchart("scattered", CategoryAxis(), NumberAxis()){
+                scatterchart("scattered", CategoryAxis(), NumberAxis()) {
                     series("scatter 1") {
                         data("jan", 5)
                         data("feb", 9)
                     }
-                    series("scatter 2"){
+                    series("scatter 2") {
                         data("jan", 6)
                         data("feb", .05)
                         data("mar", 11)
