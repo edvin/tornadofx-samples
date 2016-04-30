@@ -18,7 +18,7 @@ buildNumber.properties
 .idea/dictionaries
 .idea/vcs.xml
 .idea/jsLibraryMappings.xml
-
+*/*.iml
 # Sensitive or high-churn files:
 .idea/dataSources.ids
 .idea/dataSources.xml
@@ -47,7 +47,7 @@ buildNumber.properties
 
 # JIRA plugin
 atlassian-ide-plugin.xml
-
+.idea/
 # Crashlytics plugin (for Android Studio and IntelliJ)
 com_crashlytics_export_strings.xml
 crashlytics.properties
