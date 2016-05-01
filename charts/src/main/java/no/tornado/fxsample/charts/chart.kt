@@ -1,5 +1,6 @@
 package charts
 
+import javafx.application.Application
 import javafx.scene.chart.CategoryAxis
 import javafx.scene.chart.NumberAxis
 import javafx.scene.layout.GridPane
@@ -10,14 +11,12 @@ import tornadofx.*
  */
 
 fun main(args: Array<String>) {
-    Chart().main(args)
+    Application.launch(Chart::class.java, *args)
 }
 
 class Chart : App() {
     override val primaryView = chartview::class
-    fun main(args: Array<String>) {
-        launch(*args)
-    }
+
 }
 
 class chartview : View() {
