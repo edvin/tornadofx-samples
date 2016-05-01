@@ -7,7 +7,6 @@ import javafx.scene.control.CheckBox
 import javafx.scene.control.PasswordField
 import javafx.scene.control.TextField
 import javafx.scene.layout.GridPane
-import javafx.stage.Stage
 import javafx.util.Duration
 import no.tornado.fxsample.login.Styles.Companion.loginScreen
 import tornadofx.*
@@ -68,7 +67,7 @@ class LoginScreen : View() {
         val move = 10
         val keyframeDuration = Duration.seconds(0.04)
 
-        val stage = modalStage as Stage
+        val stage = FX.primaryStage
 
         val timelineX = Timeline(KeyFrame(keyframeDuration, EventHandler {
             if (x == 0) {

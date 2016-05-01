@@ -5,7 +5,7 @@ import tornadofx.App
 import tornadofx.importStylesheet
 
 class LoginApp : App() {
-    override val primaryView = Workbench::class
+    override val primaryView = LoginScreen::class
     val loginController: LoginController by inject()
 
     override fun start(stage: Stage) {

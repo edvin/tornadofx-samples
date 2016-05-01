@@ -6,10 +6,9 @@ import tornadofx.FX
 
 class LoginController : Controller() {
     val loginScreen: LoginScreen by inject()
+    val workbench: Workbench by inject()
 
     fun init() {
-        FX.primaryStage.hide()
-
         with (config) {
             if (containsKey(USERNAME) && containsKey(PASSWORD))
                 tryLogin(string(USERNAME), string(PASSWORD), true)
@@ -19,9 +18,14 @@ class LoginController : Controller() {
     }
 
     fun showLoginScreen(message: String, shake: Boolean = false) {
-        FX.primaryStage.hide()
+        if (FX.primaryStage.scene.root != loginScreen.root) {
+            FX.primaryStage.scene.root = loginScreen.root
+            FX.primaryStage.sizeToScene()
+            FX.primaryStage.centerOnScreen()
+        }
+
         loginScreen.title = message
-        loginScreen.openModal()
+
         Platform.runLater {
             loginScreen.username.requestFocus()
             if (shake) loginScreen.shakeStage()
@@ -29,8 +33,11 @@ class LoginController : Controller() {
     }
 
     fun showWorkbench() {
-        loginScreen.closeModal()
-        FX.primaryStage.show()
+        if (FX.primaryStage.scene.root != workbench.root) {
+            FX.primaryStage.scene.root = workbench.root
+            FX.primaryStage.sizeToScene()
+            FX.primaryStage.centerOnScreen()
+        }
     }
 
     fun tryLogin(username: String, password: String, remember: Boolean) {
@@ -57,14 +64,12 @@ class LoginController : Controller() {
     }
 
     fun logout() {
-
         with (config) {
             remove(USERNAME)
             remove(PASSWORD)
             save()
         }
 
-        FX.primaryStage.hide()
         showLoginScreen("Log in as another user")
     }
 
