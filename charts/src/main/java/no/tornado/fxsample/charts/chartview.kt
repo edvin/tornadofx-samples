@@ -1,24 +1,13 @@
-package charts
+package no.tornado.fxsample.charts
 
-import javafx.application.Application
 import javafx.scene.chart.CategoryAxis
 import javafx.scene.chart.NumberAxis
 import javafx.scene.layout.GridPane
 import tornadofx.*
 
 /**
- * Created by ronsmits on 29/04/16.
+ * Created by ronsmits on 01/05/16.
  */
-
-fun main(args: Array<String>) {
-    Application.launch(Chart::class.java, *args)
-}
-
-class Chart : App() {
-    override val primaryView = chartview::class
-
-}
-
 class chartview : View() {
     override val root = GridPane()
 
