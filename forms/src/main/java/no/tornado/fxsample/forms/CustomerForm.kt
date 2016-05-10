@@ -43,10 +43,15 @@ class CustomerForm : View() {
                 setOnAction {
                     Notifications.create()
                             .title("Customer saved!")
-                            .text("${customer.name} was born ${customer.birthday} and lives in ${customer.zip} ${customer.city}")
+                            .text("${customer.name} was born ${customer.birthday}\nand lives in\n${customer.street}, ${customer.zip} ${customer.city}")
                             .owner(this)
                             .showInformation()
                 }
+
+                // Save button is disabled until every field has a value
+                disableProperty().bind(customer.nameProperty().isNull.or(customer.birthdayProperty().isNull)
+                        .or(customer.streetProperty().isNull).or(customer.zipProperty().isNull)
+                        .or(customer.cityProperty().isNull))
             }
         }
     }
