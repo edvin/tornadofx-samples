@@ -16,7 +16,7 @@
     <packaging>pom</packaging>
 
     <properties>
-        <tornadofx.version>1.4.7-SNAPSHOT</tornadofx.version>
+        <tornadofx.version>1.4.7</tornadofx.version>
         <kotlin.version>1.0.1-2</kotlin.version>
     </properties>
 
