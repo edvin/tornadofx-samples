@@ -2,31 +2,16 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>parent</artifactId>
+        <groupId>no.tornado.fxsample</groupId>
+        <version>1.0</version>
+    </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>no.tornado.fxsample</groupId>
-    <artifactId>parent</artifactId>
-    <version>1.0</version>
-    <modules>
-        <module>login</module>
-        <module>charts</module>
-        <module>treeviews</module>
-        <module>forms</module>
-    </modules>
-    <packaging>pom</packaging>
+    <artifactId>forms</artifactId>
 
-    <properties>
-        <tornadofx.version>1.4.7-SNAPSHOT</tornadofx.version>
-        <kotlin.version>1.0.1-2</kotlin.version>
-    </properties>
-
-    <dependencies>
-        <dependency>
-            <groupId>no.tornado</groupId>
-            <artifactId>tornadofx</artifactId>
-            <version>${tornadofx.version}</version>
-        </dependency>
-    </dependencies>
+    <name>Forms, both FXML and builders, with binding</name>
 
     <build>
         <plugins>
@@ -61,5 +46,23 @@
             </plugin>
         </plugins>
     </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>de.jensd</groupId>
+            <artifactId>fontawesomefx</artifactId>
+            <version>8.9</version>
+        </dependency>
+        <dependency>
+            <groupId>org.controlsfx</groupId>
+            <artifactId>controlsfx</artifactId>
+            <version>8.40.10</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-stdlib</artifactId>
+            <version>${kotlin.version}</version>
+        </dependency>
+    </dependencies>
 
 </project>

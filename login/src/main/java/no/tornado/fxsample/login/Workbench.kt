@@ -22,17 +22,21 @@ class Workbench : View() {
             }
 
             center {
+
                 label("If you can see this, you are successfully logged in!")
 
-                button("Logout") {
-                    setOnAction {
-                        loginController.logout()
-                    }
-                }
+                hbox {
 
-                button("Exit") {
-                    setOnAction {
-                        Platform.exit()
+                    button("Logout") {
+                        setOnAction {
+                            loginController.logout()
+                        }
+                    }
+
+                    button("Exit") {
+                        setOnAction {
+                            Platform.exit()
+                        }
                     }
                 }
             }
