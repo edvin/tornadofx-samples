@@ -13,6 +13,7 @@
         <module>treeviews</module>
         <module>forms</module>
         <module>tableviews</module>
+        <module>itemviewmodel</module>
     </modules>
     <packaging>pom</packaging>
 
