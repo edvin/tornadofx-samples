@@ -5,7 +5,7 @@ import no.tornadofx.fxsamples.withpojo.model.Category
 import no.tornadofx.fxsamples.withpojo.model.Entry
 import tornadofx.*
 
-class MainView : View("2 itemViewModels with POJO's") {
+class itemViewModelWithPojos : View("2 itemViewModels with POJO's") {
     val categoryListView: CategoryListView by inject()
     val centerView: CenterView by inject()
     override val root = borderpane {

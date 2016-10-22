@@ -4,7 +4,7 @@ import javafx.application.Application
 import tornadofx.App
 
 class TableViewApp : App() {
-    override val primaryView = WorkBench::class
+    override val primaryView = DemoTableView::class
 }
 
 fun main(args: Array<String>) {

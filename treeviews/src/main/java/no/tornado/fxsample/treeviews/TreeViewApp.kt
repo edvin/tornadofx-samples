@@ -6,7 +6,7 @@ import tornadofx.importStylesheet
 
 
 class TreeViewApp : App() {
-    override val primaryView = Workbench::class
+    override val primaryView = DemoTreeViews::class
 
     init {
         importStylesheet(Styles::class)
