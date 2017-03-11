@@ -14,13 +14,13 @@
         <module>forms</module>
         <module>tableviews</module>
         <module>itemviewmodel</module>
-        <module>showcase</module>
+        <module>spring-example</module>
     </modules>
     <packaging>pom</packaging>
 
     <properties>
-        <tornadofx.version>1.5.7</tornadofx.version>
-        <kotlin.version>1.0.4</kotlin.version>
+        <tornadofx.version>1.7.0</tornadofx.version>
+        <kotlin.version>1.1.0</kotlin.version>
     </properties>
 
     <dependencies>
