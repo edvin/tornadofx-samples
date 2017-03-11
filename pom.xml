@@ -14,6 +14,7 @@
         <module>forms</module>
         <module>tableviews</module>
         <module>itemviewmodel</module>
+        <module>spring-example</module>
     </modules>
     <packaging>pom</packaging>
 
