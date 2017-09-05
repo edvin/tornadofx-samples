@@ -68,7 +68,6 @@ class DemoWorkspace : Workspace("Editor") {
         editorController.editorModelList.onChange { dvm ->
             dvm.next()
             if (dvm.wasAdded()) {
-
                 dvm.addedSubList.forEach { x ->
                     val item = MenuItem(x.title)
                     item.action {
@@ -108,6 +107,7 @@ class TextEditorFragment(val documentViewModel: DocumentViewModel) : Fragment(){
     }
 
     override val deletable = SimpleBooleanProperty(false)
+    override val closeable = SimpleBooleanProperty( true)
     override val savable = documentViewModel.dirty
     override val refreshable = documentViewModel.dirty
 

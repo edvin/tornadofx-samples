@@ -1,18 +1,18 @@
 package no.tornado.fxsample.workspace
 
+import javafx.beans.property.SimpleBooleanProperty
 import javafx.beans.property.SimpleStringProperty
 import tornadofx.ItemViewModel
+import tornadofx.observable
 
-data class Document(var title: String, var text: String)
+data class Document(var title : String = "", var text: String = "")
 
-class DocumentViewModel : ItemViewModel<Document>() {
-    val title = bind { SimpleStringProperty(item?.title ?: "") }
-    val text = bind { SimpleStringProperty(item?.text ?: "") }
-    override fun onCommit() {
-        super.onCommit()
+class DocumentViewModel(var document: Document = Document()) : ItemViewModel<Document>() {
+    val title = bind { document.observable(Document::title) }
+    val text = bind { document.observable(Document::text) }
 
-        item.text = this.text.value
-        item.title = this.title.value
-
+    init {
+        isDirty(SimpleBooleanProperty(true))
     }
+
 }

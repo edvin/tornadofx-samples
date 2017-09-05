@@ -16,8 +16,11 @@ class EditorController : Controller() {
     fun newEditor(): TextEditorFragment {
         val newFile = DocumentViewModel()
         newFile.title.value = "New file ${editorModelList.size}"
+        newFile.commit()
+
         val editor = TextEditorFragment(newFile)
         editorModelList.add(editor)
+
         return editor
     }
 
