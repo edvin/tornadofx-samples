@@ -2,10 +2,12 @@ package no.tornado.fxsample.workspace
 
 import javafx.scene.paint.Color
 import tornadofx.Stylesheet
-import tornadofx.box
 import tornadofx.cssclass
 import tornadofx.px
 
+/**
+ * Created by miguelius on 04/09/2017.
+ */
 class Styles : Stylesheet() {
     companion object {
         val wrapper by cssclass()

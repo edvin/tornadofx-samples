@@ -1,16 +1,23 @@
 package no.tornado.fxsample.workspace
 
-import javafx.beans.property.SimpleMapProperty
 import tornadofx.Controller
-import tornadofx.Fragment
 import tornadofx.observable
 import java.io.File
 import java.nio.charset.Charset
 
+/**
+ * Created by miguelius on 04/09/2017.
+ */
 class EditorController : Controller() {
 
+    /**
+     * random quotes from resource quotes.txt
+     */
     val quotes = File(javaClass.getResource("quotes.txt").toURI()).readLines(Charset.forName("UTF-8"))
 
+    /**
+     * the list of open text editors
+     */
     val editorModelList = mutableListOf<TextEditorFragment>().observable()
 
     fun newEditor(): TextEditorFragment {
@@ -24,6 +31,9 @@ class EditorController : Controller() {
         return editor
     }
 
+    /**
+     * provides a random quote
+     */
     fun quote(): String = quotes[(Math.random() * quotes.size).toInt()]
 
 

@@ -4,7 +4,9 @@ import javafx.application.Application
 import tornadofx.App
 import tornadofx.importStylesheet
 
-
+/**
+ * Created by miguelius on 04/09/2017.
+ */
 class WorkspaceApp : App() {
     override val primaryView = DemoWorkspace::class
 
