@@ -16,6 +16,7 @@
         <module>itemviewmodel</module>
         <module>spring-example</module>
         <module>workspace</module>
+        <module>pdf-viewer</module>
     </modules>
     <packaging>pom</packaging>
 
