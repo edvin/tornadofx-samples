@@ -96,7 +96,7 @@ class PdfViewer: View("Pdf Viewer") {
         pageCountProperty.value = document?.pages?.count
 
         currentPageNumberProperty.onChange { n -> openPage(n) }
-
+        openPage(0)
     }
 
     private fun openPage(pageCounter: Int) {
