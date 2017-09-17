@@ -25,7 +25,7 @@ class PersonEditor : View() {
                 tableview<PhoneNumber> {
                     numbersTable = this
                     isEditable = true
-                    columnResizePolicy = SmartResize.POLICY
+                    smartResize()
                     column("Country code", PhoneNumber::countryCodeProperty).makeEditable()
                     column("Number", PhoneNumber::numberProperty).makeEditable()
                     itemsProperty().bind(controller.selectedPerson.phoneNumbers)

@@ -1,13 +1,11 @@
 package no.tornadofx.fxsamples.withfxproperties.views
 
-import tornadofx.View
-import tornadofx.hbox
-import tornadofx.plusAssign
+import tornadofx.*
 
 
 class ItemViewModelWithFxMainView : View("Person Editor") {
     override val root = hbox {
-        this += PersonList::class
-        this += PersonEditor::class
+        add<PersonList>()
+        add<PersonEditor>()
     }
 }

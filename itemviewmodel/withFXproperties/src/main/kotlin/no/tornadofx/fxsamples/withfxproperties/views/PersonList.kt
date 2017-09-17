@@ -11,6 +11,6 @@ class PersonList : View() {
         column("Id", Person::idProperty)
         column("Name", Person::nameProperty)
         bindSelected(controller.selectedPerson)
-        columnResizePolicy = SmartResize.POLICY
+        smartResize()
     }
 }
