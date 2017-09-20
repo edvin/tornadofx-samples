@@ -16,36 +16,30 @@ import java.io.FileInputStream
 import java.io.InputStream
 import java.net.URI
 
+
 class PdfViewerApp : App(PdfViewer::class) {
-
-
     companion object {
         @JvmStatic
         fun main(args: Array<String>) {
-            Application.launch(PdfViewerApp::class.java, *args)
-
-
+            launch<PdfViewerApp>(args)
         }
-
     }
 
     override fun onBeforeShow(view: UIComponent) {
-        val uri = PdfViewer::class.java.getResource("/pdf/tornadofx-guide.pdf").toURI().toString()
-        (view as PdfViewer).uriString(uri)
+        (view as PdfViewer).uriString(resources.url("/pdf/tornadofx-guide.pdf").toString())
     }
-
 }
-class PdfViewModel: ViewModel() {
+
+class PdfViewModel : ViewModel() {
     var documentURIString = SimpleStringProperty("")
     var documentURI = SimpleObjectProperty<URI>(URI(""))
     var documentInputStream = SimpleObjectProperty<InputStream>()
     var document: PDDocument? = null
-    var pdfRenderer : PDFRenderer? = null
-    val currentPage = SimpleObjectProperty<Image>(WritableImage(1,1))
+    var pdfRenderer: PDFRenderer? = null
+    val currentPage = SimpleObjectProperty<Image>(WritableImage(1, 1))
     val currentPageNumber = SimpleIntegerProperty(0)
     val pageCount = SimpleIntegerProperty(0)
     val scale = SimpleFloatProperty(1f)
-
 
     init {
         documentInputStream.onChange { input ->
@@ -70,14 +64,10 @@ class PdfViewModel: ViewModel() {
             }
             documentInputStream.value = input
         }
-        currentPageNumber.onChange {
-            n ->
+        currentPageNumber.onChange { n ->
             openPage(n)
             log.info("Cambio a pagina ${n}")
-
         }
-
-
     }
 
     fun openPage(pageCounter: Int) {
@@ -106,63 +96,44 @@ class PdfViewModel: ViewModel() {
     var isFirst = currentPageNumber.isEqualTo(0)
 
     var isLast = currentPageNumber.isEqualTo(pageCount - 1)
-
 }
 
-class PdfViewer: Fragment("Pdf Viewer") {
+class PdfViewer : Fragment("Pdf Viewer") {
     val pdfModel: PdfViewModel by inject()
 
     override val root = borderpane {
-        top = hbox {
-
-            style {
-                alignment = Pos.CENTER
-                padding = box(20.px)
+        top = hbox(spacing = 10) {
+            alignment = Pos.CENTER
+            paddingAll = 20
+            button("|<") {
+                action(pdfModel::firstPage)
+                disableWhen(pdfModel.isFirst)
             }
-                button("|<") {
-                    action {
-                        pdfModel.firstPage()
-                    }
-                    disableWhen {
-                        pdfModel.isFirst
-                    }
-                }
-                button("<") {
-                    action {
-                        pdfModel.previousPage()
-                    }
-                    disableWhen {
-                        pdfModel.isFirst
-                    }
-                }
-                textfield (pdfModel.currentPageNumber + 1)
-                label(pdfModel.pageCount)
-                button(">") {
-                    action {
-                        pdfModel.nextPage()
-                    }
-                    disableWhen {
-                        pdfModel.isLast
-                    }
-                }
-                button(">|"){
-                    action {
-                        pdfModel.lastPage()
-                    }
-                    disableWhen {
-                        pdfModel.isLast
-                    }
-                }
-
+            button("<") {
+                action(pdfModel::previousPage)
+                disableWhen(pdfModel.isFirst)
+            }
+            textfield(pdfModel.currentPageNumber + 1)
+            label(pdfModel.pageCount)
+            button(">") {
+                action(pdfModel::nextPage)
+                disableWhen(pdfModel.isLast)
+            }
+            button(">|") {
+                action(pdfModel::lastPage)
+                disableWhen(pdfModel.isLast)
+            }
         }
-        center = scrollpane {
-            style {
-                padding = box(0.px, 60.px, 0.px, 60.px)
-                backgroundColor += Color.DARKGRAY
-                effect = InnerShadow(BlurType.THREE_PASS_BOX, Color.GRAY, 10.0, 10.0,10.0,10.0 )
-            }
-            vbox {
-                imageview(pdfModel.currentPage)
+        center {
+            scrollpane {
+                style {
+                    padding = box(0.px, 60.px, 0.px, 60.px)
+                    backgroundColor += Color.DARKGRAY
+                    effect = InnerShadow(BlurType.THREE_PASS_BOX, Color.GRAY, 10.0, 10.0, 10.0, 10.0)
+                }
+                vbox {
+                    imageview(pdfModel.currentPage)
+                }
             }
         }
     }

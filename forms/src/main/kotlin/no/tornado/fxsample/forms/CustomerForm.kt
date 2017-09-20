@@ -7,51 +7,48 @@ import no.tornado.fxsample.forms.Styles.Companion.zip
 import org.controlsfx.control.Notifications
 import tornadofx.*
 
-class CustomerForm : View() {
-    override val root = Form()
+class CustomerForm : View("Register Customer") {
+    val model : CustomerModel by inject()
 
-    val customer = Customer()
-
-    init {
-        title = "Register Customer"
-
-        with (root) {
-            fieldset("Personal Information", FontAwesomeIconView(USER)) {
-                field("Name") {
-                    textfield().bind(customer.nameProperty())
-                }
-
-                field("Birthday") {
-                    datepicker().bind(customer.birthdayProperty())
-                }
+    override val root = form {
+        fieldset("Personal Information", FontAwesomeIconView(USER)) {
+            field("Name") {
+                textfield(model.name).required()
             }
 
-            fieldset("Address", FontAwesomeIconView(HOME)) {
-                field("Street") {
-                    textfield().bind(customer.streetProperty())
-                }
-                field("Zip / City") {
-                    textfield() {
-                        addClass(zip)
-                        bind(customer.zipProperty())
-                    }
-                    textfield().bind(customer.cityProperty())
-                }
+            field("Birthday") {
+                datepicker(model.birthday)
             }
+        }
 
-            button("Save") {
-                setOnAction {
+        fieldset("Address", FontAwesomeIconView(HOME)) {
+            field("Street") {
+                textfield(model.street).required()
+            }
+            field("Zip / City") {
+                textfield(model.zip) {
+                    addClass(zip)
+                    required()
+                }
+                textfield(model.city).required()
+            }
+        }
+
+        button("Save") {
+            setOnAction {
+                model.commit {
+                    val customer = model.item
                     Notifications.create()
                             .title("Customer saved!")
                             .text("${customer.name} was born ${customer.birthday}\nand lives in\n${customer.street}, ${customer.zip} ${customer.city}")
                             .owner(this)
                             .showInformation()
                 }
+            }
 
-                // Save button is disabled until every field has a value
-                disableProperty().bind(customer.nameProperty().isNull.or(customer.birthdayProperty().isNull)
-                        .or(customer.streetProperty().isNull).or(customer.zipProperty().isNull)
-                        .or(customer.cityProperty().isNull))
+            // Save button is disabled until every field has a value
+            model.dirtyStateProperty().onChange {
+                isDisable = model.isValid
             }
         }
     }

@@ -85,10 +85,10 @@ class LoginScreen : View() {
         val timelineY = Timeline(KeyFrame(keyframeDuration, EventHandler {
             if (y == 0) {
                 stage.y = stage.y + move
-                y = 1;
+                y = 1
             } else {
                 stage.y = stage.y - move
-                y = 0;
+                y = 0
             }
         }))
 
