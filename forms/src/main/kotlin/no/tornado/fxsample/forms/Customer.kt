@@ -2,9 +2,7 @@ package no.tornado.fxsample.forms
 
 import javafx.beans.property.Property
 import javafx.beans.property.StringProperty
-import tornadofx.ItemViewModel
-import tornadofx.getProperty
-import tornadofx.property
+import tornadofx.*
 import java.time.LocalDate
 
 class Customer {
@@ -26,7 +24,7 @@ class Customer {
     override fun toString() = name
 }
 
-class CustomerModel : ItemViewModel<Customer>() {
+class CustomerModel : ItemViewModel<Customer>(Customer()) {
     val name: StringProperty = bind { item?.nameProperty() }
     val birthday: Property<LocalDate> = bind { item?.birthdayProperty() }
     val street: StringProperty = bind { item?.streetProperty() }

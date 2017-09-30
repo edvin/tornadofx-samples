@@ -35,7 +35,7 @@ class CustomerForm : View("Register Customer") {
         }
 
         button("Save") {
-            setOnAction {
+            action {
                 model.commit {
                     val customer = model.item
                     Notifications.create()
@@ -46,10 +46,7 @@ class CustomerForm : View("Register Customer") {
                 }
             }
 
-            // Save button is disabled until every field has a value
-            model.dirtyStateProperty().onChange {
-                isDisable = model.isValid
-            }
+            enableWhen(model.valid)
         }
     }
 
