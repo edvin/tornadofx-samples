@@ -92,10 +92,10 @@ class LoginScreen : View() {
             }
         }))
 
-        timelineY.cycleCount = cycleCount;
-        timelineY.isAutoReverse = false;
+        timelineY.cycleCount = cycleCount
+        timelineY.isAutoReverse = false
 
         timelineX.play()
-        timelineY.play();
+        timelineY.play()
     }
 }
