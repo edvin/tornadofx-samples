@@ -21,8 +21,8 @@
     <packaging>pom</packaging>
 
     <properties>
-        <tornadofx.version>1.7.11</tornadofx.version>
-        <kotlin.version>1.1.4-2</kotlin.version>
+        <tornadofx.version>1.7.12</tornadofx.version>
+        <kotlin.version>1.2.0</kotlin.version>
         <kotlin.compiler.jvmTarget>1.8</kotlin.compiler.jvmTarget>
     </properties>
 
