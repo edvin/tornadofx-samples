@@ -26,17 +26,21 @@ class DemoTreeViews : View() {
             }
             vbox {
                 label("based on a list")
-                val departments = persons
-                        .map { it.department }
-                        .distinct().map { Person(it, "") }
+                val departments: List<Department> = persons
+                        .distinctBy { it.department }
+                        .map { Department(it.department) }
 
-                treeview(TreeItem(Person("Departments", ""))) {
+                treeview<PersonTreeItem>(TreeItem(TreeRoot)) {
                     cellFormat { text = it.name }
 
                     onUserSelect { println(it) }
 
                     populate { parent ->
-                        if (parent == root) departments else persons.filter { it.department == parent.value.name }
+                        when (parent.value) {
+                            TreeRoot -> departments
+                            is Department -> persons.filter { it.department == parent.value.name }
+                            is Person -> emptyList()
+                        }
                     }
                 }
             }

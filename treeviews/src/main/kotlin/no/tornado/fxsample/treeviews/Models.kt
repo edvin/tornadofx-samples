@@ -1,7 +1,11 @@
 package no.tornado.fxsample.treeviews
 
 data class Group(val name: String, val children: List<Group>? = null)
-data class Person(val name: String, val department: String)
+
+sealed class PersonTreeItem(open val name: String)
+object TreeRoot : PersonTreeItem("Departments")
+data class Department(override val name: String): PersonTreeItem(name)
+data class Person(override val name: String, val department: String) : PersonTreeItem(name)
 
 val group = Group("Parent",
         listOf(
