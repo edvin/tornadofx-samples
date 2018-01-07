@@ -11,12 +11,19 @@
         <module>login</module>
         <module>charts</module>
         <module>treeviews</module>
+        <module>forms</module>
+        <module>tableviews</module>
+        <module>itemviewmodel</module>
+        <module>spring-example</module>
+        <module>workspace</module>
+        <module>pdf-viewer</module>
     </modules>
     <packaging>pom</packaging>
 
     <properties>
-        <tornadofx.version>1.7.14</tornadofx.version>
-        <kotlin.version>1.2.10</kotlin.version>
+        <tornadofx.version>1.7.12</tornadofx.version>
+        <kotlin.version>1.2.0</kotlin.version>
+        <kotlin.compiler.jvmTarget>1.8</kotlin.compiler.jvmTarget>
     </properties>
 
     <dependencies>
@@ -33,6 +40,9 @@
                 <groupId>org.jetbrains.kotlin</groupId>
                 <artifactId>kotlin-maven-plugin</artifactId>
                 <version>${kotlin.version}</version>
+                <configuration>
+                    <jvmTarget>1.8</jvmTarget>
+                </configuration>
                 <executions>
                     <execution>
                         <id>compile</id>
@@ -42,7 +52,7 @@
                         </goals>
                         <configuration>
                             <sourceDirs>
-                                <source>src/main/java</source>
+                                <source>src/main/kotlin</source>
                             </sourceDirs>
                         </configuration>
                     </execution>
@@ -52,8 +62,24 @@
                         <goals>
                             <goal>test-compile</goal>
                         </goals>
+                        <configuration>
+                            <sourceDirs></sourceDirs>
+                        </configuration>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.6</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <mainClass>${main.class}</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
             </plugin>
         </plugins>
     </build>
