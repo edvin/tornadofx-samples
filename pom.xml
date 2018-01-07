@@ -15,8 +15,8 @@
     <packaging>pom</packaging>
 
     <properties>
-        <tornadofx.version>1.4.5</tornadofx.version>
-        <kotlin.version>1.0.1-2</kotlin.version>
+        <tornadofx.version>1.7.14</tornadofx.version>
+        <kotlin.version>1.2.10</kotlin.version>
     </properties>
 
     <dependencies>
@@ -52,9 +52,6 @@
                         <goals>
                             <goal>test-compile</goal>
                         </goals>
-                        <configuration>
-                            <sourceDirs></sourceDirs>
-                        </configuration>
                     </execution>
                 </executions>
             </plugin>
