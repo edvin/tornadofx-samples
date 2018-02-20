@@ -42,8 +42,8 @@ class EntryDetailView() : View() {
 class EntryView : View() {
     val controller: MainController by inject()
     override val root = tableview<Entry> {
-        column("title", Entry::title).weigthedWidth(1.0)
-        column("synopsis", Entry::synopsis).weigthedWidth(4.0)
+        column("title", Entry::title).weightedWidth(1.0)
+        column("synopsis", Entry::synopsis).weightedWidth(4.0)
         columnResizePolicy = SmartResize.POLICY
         controller.categoryModel.itemProperty.onChange {
             items.setAll(controller.entries[it!!.index])
