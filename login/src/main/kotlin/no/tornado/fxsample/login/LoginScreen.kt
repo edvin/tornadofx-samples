@@ -2,62 +2,56 @@ package no.tornado.fxsample.login
 
 import javafx.animation.KeyFrame
 import javafx.animation.Timeline
+import javafx.beans.property.SimpleBooleanProperty
+import javafx.beans.property.SimpleStringProperty
 import javafx.event.EventHandler
-import javafx.scene.control.CheckBox
-import javafx.scene.control.PasswordField
-import javafx.scene.control.TextField
-import javafx.scene.layout.GridPane
 import javafx.util.Duration
 import no.tornado.fxsample.login.Styles.Companion.loginScreen
 import tornadofx.*
 
-class LoginScreen : View() {
-    override val root = GridPane()
+class LoginScreen : View("Please log in") {
     val loginController: LoginController by inject()
 
-    var username: TextField by singleAssign()
-    var password: PasswordField by singleAssign()
-    var remember: CheckBox by singleAssign()
+    private val model = object : ViewModel() {
+        val username = bind { SimpleStringProperty() }
+        val password = bind { SimpleStringProperty() }
+        val remember = bind { SimpleBooleanProperty() }
+    }
 
-    init {
-        title = "Please log in"
-
-        with (root) {
-            addClass(loginScreen)
-
-            row("Username") {
-                username = textfield()
-            }
-
-            row("Password") {
-                password = passwordfield()
-            }
-
-            row("Remember me") {
-                remember = checkbox()
-            }
-
-            row {
-                button("Login") {
-                    isDefaultButton = true
-
-                    setOnAction {
-                        loginController.tryLogin(
-                                username.text,
-                                password.text,
-                                remember.isSelected
-                        )
-                    }
+    override val root = form {
+        addClass(loginScreen)
+        fieldset {
+            field("Username") {
+                textfield(model.username) {
+                    required()
+                    whenDocked { requestFocus() }
                 }
             }
+            field("Password") {
+                passwordfield(model.password).required()
+            }
+            field("Remember me") {
+                checkbox(property = model.remember)
+            }
+        }
 
+        button("Login") {
+            isDefaultButton = true
+
+            action {
+                model.commit {
+                    loginController.tryLogin(
+                            model.username.value,
+                            model.password.value,
+                            model.remember.value
+                    )
+                }
+            }
         }
     }
 
-    fun clear() {
-        username.clear()
-        password.clear()
-        remember.isSelected = false
+    override fun onDock() {
+        model.validate(decorateErrors = false)
     }
 
     fun shakeStage() {
@@ -97,5 +91,11 @@ class LoginScreen : View() {
 
         timelineX.play()
         timelineY.play()
+    }
+
+    fun clear() {
+        model.username.value = ""
+        model.password.value = ""
+        model.remember.value = false
     }
 }

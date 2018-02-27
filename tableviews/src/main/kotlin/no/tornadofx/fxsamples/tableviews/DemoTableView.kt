@@ -15,8 +15,8 @@ class DemoTableView : View() {
                 vbox {
                     label("Tableview from a map")
                     tableview(FXCollections.observableArrayList<Map.Entry<String, Int>>(mapTableContent.entries)) {
-                        column("Item", Map.Entry<String, Int>::key)
-                        column("Count", Map.Entry<String, Int>::value)
+                        readonlyColumn("Item", Map.Entry<String, Int>::key)
+                        readonlyColumn("Count", Map.Entry<String, Int>::value)
                         resizeColumnsToFitContent()
                     }
                 }

@@ -131,8 +131,8 @@ class PdfViewer : Fragment("Pdf Viewer") {
                     backgroundColor += Color.DARKGRAY
                     effect = InnerShadow(BlurType.THREE_PASS_BOX, Color.GRAY, 10.0, 10.0, 10.0, 10.0)
                 }
-                vbox {
-                    imageview(pdfModel.currentPage)
+                imageview(pdfModel.currentPage) {
+                    minWidthProperty().bind(this@scrollpane.widthProperty())
                 }
             }
         }

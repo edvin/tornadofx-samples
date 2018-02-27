@@ -1,15 +1,13 @@
 package no.tornado.fxsample.login
 
-import javafx.application.Platform
-import tornadofx.Controller
-import tornadofx.FX
+import tornadofx.*
 
 class LoginController : Controller() {
     val loginScreen: LoginScreen by inject()
-    val workbench: Workbench by inject()
+    val secureScreen: SecureScreen by inject()
 
     fun init() {
-        with (config) {
+        with(config) {
             if (containsKey(USERNAME) && containsKey(PASSWORD))
                 tryLogin(string(USERNAME), string(PASSWORD), true)
             else
@@ -18,26 +16,14 @@ class LoginController : Controller() {
     }
 
     fun showLoginScreen(message: String, shake: Boolean = false) {
-        if (FX.primaryStage.scene.root != loginScreen.root) {
-            FX.primaryStage.scene.root = loginScreen.root
-            FX.primaryStage.sizeToScene()
-            FX.primaryStage.centerOnScreen()
-        }
-
-        loginScreen.title = message
-
-        Platform.runLater {
-            loginScreen.username.requestFocus()
+        secureScreen.replaceWith(loginScreen, sizeToScene = true, centerOnScreen = true)
+        runLater {
             if (shake) loginScreen.shakeStage()
         }
     }
 
-    fun showWorkbench() {
-        if (FX.primaryStage.scene.root != workbench.root) {
-            FX.primaryStage.scene.root = workbench.root
-            FX.primaryStage.sizeToScene()
-            FX.primaryStage.centerOnScreen()
-        }
+    fun showSecureScreen() {
+        loginScreen.replaceWith(secureScreen, sizeToScene = true, centerOnScreen = true)
     }
 
     fun tryLogin(username: String, password: String, remember: Boolean) {
@@ -49,14 +35,14 @@ class LoginController : Controller() {
                 loginScreen.clear()
 
                 if (remember) {
-                    with (config) {
+                    with(config) {
                         set(USERNAME to username)
                         set(PASSWORD to password)
                         save()
                     }
                 }
 
-                showWorkbench()
+                showSecureScreen()
             } else {
                 showLoginScreen("Login failed. Please try again.", true)
             }
@@ -64,7 +50,7 @@ class LoginController : Controller() {
     }
 
     fun logout() {
-        with (config) {
+        with(config) {
             remove(USERNAME)
             remove(PASSWORD)
             save()
