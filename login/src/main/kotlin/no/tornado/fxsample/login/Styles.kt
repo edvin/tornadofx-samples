@@ -1,9 +1,6 @@
 package no.tornado.fxsample.login
 
-import tornadofx.Stylesheet
-import tornadofx.box
-import tornadofx.cssclass
-import tornadofx.px
+import tornadofx.*
 
 class Styles : Stylesheet() {
     companion object {
@@ -11,7 +8,7 @@ class Styles : Stylesheet() {
     }
 
     init {
-        select(loginScreen) {
+        loginScreen {
             padding = box(15.px)
             vgap = 7.px
             hgap = 10.px
