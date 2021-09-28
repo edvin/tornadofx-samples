@@ -9,7 +9,7 @@ class LoginController : Controller() {
     fun init() {
         with(config) {
             if (containsKey(USERNAME) && containsKey(PASSWORD))
-                tryLogin(string(USERNAME), string(PASSWORD), true)
+                tryLogin(USERNAME, PASSWORD, true)
             else
                 showLoginScreen("Please log in")
         }

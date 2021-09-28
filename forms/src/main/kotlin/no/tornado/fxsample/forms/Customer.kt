@@ -1,34 +1,35 @@
 package no.tornado.fxsample.forms
 
 import javafx.beans.property.Property
-import javafx.beans.property.StringProperty
+import javafx.beans.property.SimpleObjectProperty
+import javafx.beans.property.SimpleStringProperty
 import tornadofx.*
 import java.time.LocalDate
 
-class Customer {
-    var name by property<String>()
-    fun nameProperty() = getProperty(Customer::name)
+class Customer(name: String? = null, birthday: String? = null, street: String? = null, zip: String? = null, city: String? = null) {
+    val nameProperty = SimpleStringProperty(this, "name", name)
+    var name: String by nameProperty
 
-    var birthday by property<LocalDate>()
-    fun birthdayProperty() = getProperty(Customer::birthday)
+    val birthdayProperty = SimpleObjectProperty<LocalDate>(LocalDate.parse(birthday))
+    var birthday: LocalDate by birthdayProperty
 
-    var street by property<String>()
-    fun streetProperty() = getProperty(Customer::street)
+    val streetProperty = SimpleStringProperty(this, "street", street)
+    var street: String by streetProperty
 
-    var zip by property<String>()
-    fun zipProperty() = getProperty(Customer::zip)
+    val zipProperty = SimpleStringProperty(this, "zip", zip)
+    var zip: String by zipProperty
 
-    var city by property<String>()
-    fun cityProperty() = getProperty(Customer::city)
+    val cityProperty = SimpleStringProperty(this, "city", city)
+    var city: String by cityProperty
 
     override fun toString() = name
 }
 
-class CustomerModel : ItemViewModel<Customer>(Customer()) {
-    val name: StringProperty = bind { item?.nameProperty() }
-    val birthday: Property<LocalDate> = bind { item?.birthdayProperty() }
-    val street: StringProperty = bind { item?.streetProperty() }
-    val zip:StringProperty = bind { item?.zipProperty() }
-    val city:StringProperty = bind { item?.cityProperty() }
+class CustomerModel : ItemViewModel<Customer>(Customer(birthday = LocalDate.now().toString())) {
+    val name = bind(Customer::nameProperty)
+    val birthday: Property<LocalDate> = bind(Customer::birthdayProperty)
+    val street = bind(Customer::streetProperty)
+    val zip = bind(Customer::zipProperty)
+    val city = bind(Customer::cityProperty)
 }
 

@@ -8,7 +8,7 @@ import org.controlsfx.control.Notifications
 import tornadofx.*
 
 class CustomerForm : View("Register Customer") {
-    val model : CustomerModel by inject()
+    private val model: CustomerModel by inject()
 
     override val root = form {
         fieldset("Personal Information", FontAwesomeIconView(USER)) {
@@ -39,16 +39,15 @@ class CustomerForm : View("Register Customer") {
                 model.commit {
                     val customer = model.item
                     Notifications.create()
-                            .title("Customer saved!")
-                            .text("${customer.name} was born ${customer.birthday}\nand lives in\n${customer.street}, ${customer.zip} ${customer.city}")
-                            .owner(this)
-                            .showInformation()
+                       .title("Customer saved!")
+                        .text("${customer.name} was born ${customer.birthday}\nand lives in\n${customer.street}, ${customer.zip} ${customer.city}")
+                        .owner(this)
+                        .showInformation()
                 }
             }
 
             enableWhen(model.valid)
         }
     }
-
 }
 
