@@ -1,5 +1,8 @@
 package no.tornadofx.fxsamples.withfxproperties.model
 
+import javafx.beans.property.SimpleIntegerProperty
+import javafx.beans.property.SimpleListProperty
+import javafx.beans.property.SimpleStringProperty
 import javafx.collections.FXCollections
 import tornadofx.ItemViewModel
 import tornadofx.getProperty
@@ -15,13 +18,13 @@ class PhoneNumber(countryCode: String, number: String) {
 
 class Person(id: Int, name: String, phoneNumbers: List<PhoneNumber>) {
     var id by property(id)
-    fun idProperty() = getProperty(Person::id)
+    fun idProperty() = SimpleIntegerProperty(getProperty(Person::id).value)
 
     var name by property(name)
-    fun nameProperty() = getProperty(Person::name)
+    fun nameProperty() = SimpleStringProperty(getProperty(Person::name).value)
 
     var phoneNumbers by property(FXCollections.observableArrayList(phoneNumbers))
-    fun phoneNumbersProperty() = getProperty(Person::phoneNumbers)
+    fun phoneNumbersProperty() = SimpleListProperty(getProperty(Person::phoneNumbers).value)
 }
 
 class PersonModel : ItemViewModel<Person>() {
