@@ -12,7 +12,7 @@ fun main(args: Array<String>) {
 }
 
 class ChartApp : App() {
-    override val primaryView = chartview::class
+    override val primaryView = ChartView::class
 
 }
 
