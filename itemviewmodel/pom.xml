@@ -16,4 +16,8 @@
         <module>withFXproperties</module>
     </modules>
 
+    <build>
+        <testSourceDirectory>src/test/kotlin</testSourceDirectory>
+    </build>
+
 </project>

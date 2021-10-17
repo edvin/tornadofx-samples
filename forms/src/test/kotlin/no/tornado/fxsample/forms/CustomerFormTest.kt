@@ -1,7 +1,6 @@
 package no.tornado.fxsample.forms
 
 import javafx.scene.control.Button
-import javafx.scene.control.ComboBox
 import javafx.scene.control.DatePicker
 import javafx.scene.input.KeyCode
 import no.tornado.fxsample.TestBase

@@ -12,7 +12,7 @@ class PersonEditor : View() {
     override val root = form {
         fieldset("Personal Information") {
             field("Name") {
-                textfield(controller.selectedPerson.name)
+                textfield(controller.selectedPerson.name) { id = "infoName" }
             }
             button("Save") {
                 setOnAction {
@@ -23,6 +23,7 @@ class PersonEditor : View() {
         fieldset("Phone Numbers") {
             vbox(5.0) {
                 tableview<PhoneNumber> {
+                    id = "phoneNumbers"
                     numbersTable = this
                     isEditable = true
                     smartResize()

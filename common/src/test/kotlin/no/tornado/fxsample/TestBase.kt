@@ -24,6 +24,11 @@ abstract class TestBase : ApplicationTest() {
         }
     }
 
+    /*
+    ** Both row and column numbers start from 0, and tableWidth is the number of columns
+     */
+    fun cellIndex(row: Int, column: Int, tableWidth: Int) = (row * tableWidth) + column
+
     @BeforeTest
     abstract fun initView()
 
