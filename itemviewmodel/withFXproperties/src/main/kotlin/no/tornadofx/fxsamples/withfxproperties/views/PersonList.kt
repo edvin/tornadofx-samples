@@ -8,6 +8,7 @@ class PersonList : View() {
     val controller: PersonController by inject()
 
     override val root = tableview(controller.persons) {
+        id = "personList"
         column("Id", Person::idProperty)
         column("Name", Person::nameProperty)
         bindSelected(controller.selectedPerson)

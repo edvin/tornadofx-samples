@@ -9,15 +9,8 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>itemviewmodel</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>withpojos</module>
-        <module>withFXproperties</module>
-    </modules>
+    <artifactId>common</artifactId>
 
-    <build>
-        <testSourceDirectory>src/test/kotlin</testSourceDirectory>
-    </build>
-
+    <name>common</name>
+    <description>Common code</description>
 </project>

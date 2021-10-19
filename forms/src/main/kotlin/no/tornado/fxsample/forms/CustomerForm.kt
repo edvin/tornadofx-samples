@@ -13,28 +13,30 @@ class CustomerForm : View("Register Customer") {
     override val root = form {
         fieldset("Personal Information", FontAwesomeIconView(USER)) {
             field("Name") {
-                textfield(model.name).required()
+                textfield(model.name) { id = "name" }.required()
             }
 
             field("Birthday") {
-                datepicker(model.birthday)
+                datepicker(model.birthday) { id = "birthday" }
             }
         }
 
         fieldset("Address", FontAwesomeIconView(HOME)) {
             field("Street") {
-                textfield(model.street).required()
+                textfield(model.street) { id = "street" }.required()
             }
             field("Zip / City") {
                 textfield(model.zip) {
+                    id = "zip"
                     addClass(zip)
                     required()
                 }
-                textfield(model.city).required()
+                textfield(model.city) { id = "city" }.required()
             }
         }
 
         button("Save") {
+            id = "save"
             action {
                 model.commit {
                     val customer = model.item

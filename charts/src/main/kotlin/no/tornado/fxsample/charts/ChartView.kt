@@ -8,7 +8,7 @@ import tornadofx.*
 /**
  * Created by ronsmits on 01/05/16.
  */
-class chartview : View("Charts") {
+class ChartView : View("Charts") {
     override val root = GridPane()
 
     init {
