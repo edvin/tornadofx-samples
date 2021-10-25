@@ -5,9 +5,9 @@ import no.tornadofx.fxsamples.withpojo.model.Category
 import no.tornadofx.fxsamples.withpojo.model.Entry
 import tornadofx.*
 
-class itemViewModelWithPojos : View("2 itemViewModels with POJO's") {
-    val categoryListView: CategoryListView by inject()
-    val centerView: CenterView by inject()
+class ItemViewModelWithPojos : View("2 itemViewModels with POJO's") {
+    private val categoryListView: CategoryListView by inject()
+    private val centerView: CenterView by inject()
     override val root = borderpane {
         left = categoryListView.root
         center = centerView.root
@@ -16,8 +16,8 @@ class itemViewModelWithPojos : View("2 itemViewModels with POJO's") {
 }
 
 class CenterView : View() {
-    val entryView: EntryView by inject()
-    val entryDetailView: EntryDetailView by inject()
+    private val entryView: EntryView by inject()
+    private val entryDetailView: EntryDetailView by inject()
     override val root = vbox {
         add(entryView.root)
         add(entryDetailView.root)
@@ -25,23 +25,31 @@ class CenterView : View() {
 }
 
 class EntryDetailView() : View() {
-    val controller: MainController by inject()
+    private val controller: MainController by inject()
     override val root = form {
         fieldset("entry detail information") {
-            field("title") { label(controller.entryModel.title) }
+            field("title") {
+                id = "title"
+                label(controller.entryModel.title)
+            }
             field("synopsis") {
+                id = "synopsis"
                 label(controller.entryModel.synopsis) {
                     prefWidth = 300.0
                 }
             }
-            field("author") { label(controller.entryModel.author) }
+            field("author") {
+                id = "author"
+                label(controller.entryModel.author)
+            }
         }
     }
 }
 
 class EntryView : View() {
-    val controller: MainController by inject()
+    private val controller: MainController by inject()
     override val root = tableview<Entry> {
+        id = "entriesList"
         readonlyColumn("title", Entry::title).weightedWidth(1.0)
         readonlyColumn("synopsis", Entry::synopsis).weightedWidth(4.0)
         columnResizePolicy = SmartResize.POLICY
@@ -55,10 +63,11 @@ class EntryView : View() {
 }
 
 class CategoryListView : View() {
-    val controller: MainController by inject()
+    private val controller: MainController by inject()
     override val root = listview<Category> {
+        id = "categoryList"
         prefWidth = 100.0
-        items = controller.categories.observable()
+        items = controller.categories.asObservable()
 
         cellFormat { text = it.title }
         bindSelected(controller.categoryModel)
