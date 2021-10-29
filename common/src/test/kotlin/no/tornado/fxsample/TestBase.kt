@@ -15,11 +15,12 @@ abstract class TestBase : ApplicationTest() {
 
     val stage: Stage = FxToolkit.registerPrimaryStage()
 
-    inline fun <reified T: View> showView() {
+    inline fun <reified T: View, reified A: App> showView() {
+        FxToolkit.setupApplication(A::class.java)
+
         testedView = find<T>()
 
         FxToolkit.setupFixture {
-            stage.scene = Scene(testedView.root)
             stage.show()
         }
     }

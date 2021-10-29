@@ -5,6 +5,7 @@ import javafx.scene.control.TableCell
 import javafx.scene.input.KeyCode
 import no.tornado.fxsample.TestBase
 import no.tornadofx.fxsamples.withfxproperties.model.Person
+import no.tornadofx.fxsamples.withfxproperties.WithFXPropertiesApp
 import org.testfx.api.FxAssert.verifyThat
 import org.testfx.matcher.control.TableViewMatchers
 import org.testfx.matcher.control.TextInputControlMatchers
@@ -16,7 +17,7 @@ class TestView: TestBase() {
     lateinit var persons: ObservableList<Person>
 
     override fun initView() {
-        showView<ItemViewModelWithFxMainView>()
+        showView<ItemViewModelWithFxMainView, WithFXPropertiesApp>()
         persons = find<PersonList>().controller.persons
     }
 

@@ -7,7 +7,7 @@ import kotlin.test.Test
 
 class ChartViewTest: TestBase() {
     override fun initView() {
-        showView<ChartView>()
+        showView<ChartView, ChartApp>()
     }
 
     @Test

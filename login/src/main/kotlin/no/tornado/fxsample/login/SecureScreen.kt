@@ -5,8 +5,8 @@ import javafx.geometry.Pos
 import javafx.scene.text.Font
 import tornadofx.*
 
-class SecureScreen : View("Secure Screen") {
-    val loginController: LoginController by inject()
+class SecureScreen : View(screenTitle) {
+    private val loginController: LoginController by inject()
 
     override val root = borderpane {
         setPrefSize(800.0, 600.0)
@@ -26,13 +26,13 @@ class SecureScreen : View("Secure Screen") {
                 hbox {
                     alignment = Pos.CENTER
 
-                    button("Logout") {
+                    button(logoutLabel) {
                         setOnAction {
                             loginController.logout()
                         }
                     }
 
-                    button("Exit") {
+                    button(exitLabel) {
                         setOnAction {
                             Platform.exit()
                         }
@@ -40,5 +40,11 @@ class SecureScreen : View("Secure Screen") {
                 }
             }
         }
+    }
+
+    companion object {
+        const val screenTitle = "Secure Screen"
+        const val exitLabel = "Exit"
+        const val logoutLabel = "Logout"
     }
 }
