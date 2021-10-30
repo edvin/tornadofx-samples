@@ -13,6 +13,15 @@
 
     <name>Tableview examples</name>
 
+    <dependencies>
+        <dependency>
+            <groupId>no.tornado.fxsample</groupId>
+            <artifactId>common</artifactId>
+            <version>1.0</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
     <build>
         <plugins>
             <plugin>
@@ -21,25 +30,15 @@
                 <version>${kotlin.version}</version>
                 <executions>
                     <execution>
-                        <id>compile</id>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>compile</goal>
-                        </goals>
-                        <configuration>
-                            <sourceDirs>
-                                <source>src/main/kotlin</source>
-                            </sourceDirs>
-                        </configuration>
-                    </execution>
-                    <execution>
                         <id>test-compile</id>
                         <phase>test-compile</phase>
                         <goals>
                             <goal>test-compile</goal>
                         </goals>
                         <configuration>
-                            <sourceDirs></sourceDirs>
+                            <sourceDirs>
+                                <sourceDir>../common/src/test/kotlin</sourceDir>
+                            </sourceDirs>
                         </configuration>
                     </execution>
                 </executions>
