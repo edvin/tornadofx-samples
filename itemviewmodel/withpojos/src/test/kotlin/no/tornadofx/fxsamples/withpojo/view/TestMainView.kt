@@ -2,6 +2,7 @@ package no.tornadofx.fxsamples.withpojo.view
 
 import javafx.scene.control.TableCell
 import no.tornado.fxsample.TestBase
+import no.tornadofx.fxsamples.withpojo.app.MyApp
 import no.tornadofx.fxsamples.withpojo.controller.MainController
 import no.tornadofx.fxsamples.withpojo.model.Category
 import no.tornadofx.fxsamples.withpojo.model.Entry
@@ -13,7 +14,7 @@ import kotlin.test.Test
 
 class TestMainView : TestBase() {
     override fun initView() {
-        showView<ItemViewModelWithPojos>()
+        showView<ItemViewModelWithPojos, MyApp>()
     }
 
     @Test

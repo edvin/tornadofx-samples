@@ -10,7 +10,7 @@ import kotlin.test.Test
 
 class CustomerFormTest: TestBase() {
     override fun initView() {
-        showView<CustomerForm>()
+        showView<CustomerForm, CustomerApp>()
     }
 
     @Test

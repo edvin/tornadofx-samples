@@ -9,8 +9,8 @@ import javafx.util.Duration
 import no.tornado.fxsample.login.Styles.Companion.loginScreen
 import tornadofx.*
 
-class LoginScreen : View("Please log in") {
-    val loginController: LoginController by inject()
+class LoginScreen : View(screenTitle) {
+    private val loginController: LoginController by inject()
 
     private val model = object : ViewModel() {
         val username = bind { SimpleStringProperty() }
@@ -21,16 +21,16 @@ class LoginScreen : View("Please log in") {
     override val root = form {
         addClass(loginScreen)
         fieldset {
-            field("Username") {
+            field(usernameLabel) {
                 textfield(model.username) {
                     required()
                     whenDocked { requestFocus() }
                 }
             }
-            field("Password") {
+            field(passwordLabel) {
                 passwordfield(model.password).required()
             }
-            field("Remember me") {
+            field(remeberLabel) {
                 checkbox(property = model.remember)
             }
         }
@@ -97,5 +97,13 @@ class LoginScreen : View("Please log in") {
         model.username.value = ""
         model.password.value = ""
         model.remember.value = false
+    }
+
+    companion object {
+        const val screenTitle = "Please log in"
+
+        const val usernameLabel = "Username"
+        const val passwordLabel = "Password"
+        const val remeberLabel = "Remember me"
     }
 }
