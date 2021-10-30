@@ -7,5 +7,9 @@ import org.springframework.stereotype.Component
  */
 
 @Component class HelloBean {
-    fun helloworld() : String =  "Hello by di()"
+    fun helloworld() : String =  data
+
+    companion object {
+        const val data = "Hello by di()"
+    }
 }
