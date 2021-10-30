@@ -11,6 +11,10 @@
 
     <artifactId>charts</artifactId>
 
+    <properties>
+        <main.class>no.tornado.fxsample.charts.ChartApp</main.class>
+    </properties>
+
     <name>Charts</name>
     <description>Show all the charts that tornadoFX can do.</description>
 

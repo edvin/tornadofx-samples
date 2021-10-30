@@ -10,6 +10,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>withpojo</artifactId>
+
+    <properties>
+        <main.class>no.tornadofx.fxsamples.withpojo.app.MyApp</main.class>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>no.tornado.fxsample</groupId>

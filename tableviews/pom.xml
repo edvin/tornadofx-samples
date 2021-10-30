@@ -11,6 +11,10 @@
 
     <artifactId>tableviews</artifactId>
 
+    <properties>
+        <main.class>no.tornadofx.fxsamples.tableviews.TableViewApp</main.class>
+    </properties>
+
     <name>Tableview examples</name>
 
     <dependencies>
