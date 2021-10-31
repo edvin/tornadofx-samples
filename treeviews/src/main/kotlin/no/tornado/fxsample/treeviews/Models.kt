@@ -29,3 +29,8 @@ val persons = listOf(
         Person("Jacob Mays", "IT Help Desk"),
         Person("Larry Cable", "Customer Service"))
 
+val departments: List<Department> = persons
+        .distinctBy { it.department }
+        .map { Department(it.department) }
+
+
