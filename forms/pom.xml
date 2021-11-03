@@ -11,6 +11,10 @@
 
     <artifactId>forms</artifactId>
 
+    <properties>
+        <main.class>no.tornado.fxsample.forms.CustomerApp</main.class>
+    </properties>
+
     <name>Forms, both FXML and builders, with binding</name>
 
     <dependencies>
@@ -22,7 +26,7 @@
         <dependency>
             <groupId>org.controlsfx</groupId>
             <artifactId>controlsfx</artifactId>
-            <version>8.40.10</version>
+            <version>11.1.0</version>
         </dependency>
         <dependency>
             <groupId>no.tornado.fxsample</groupId>

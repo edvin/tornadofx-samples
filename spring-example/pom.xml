@@ -13,6 +13,7 @@
 
     <properties>
         <spring.version>5.3.11</spring.version>
+        <main.class>no.tornadofx.fxsample.springexample.SpringExampleApp</main.class>
     </properties>
 
     <dependencies>

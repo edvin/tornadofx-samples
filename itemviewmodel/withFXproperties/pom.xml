@@ -10,6 +10,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>withFXproperties</artifactId>
+
+    <properties>
+        <main.class>no.tornadofx.fxsamples.withfxproperties.WithFXPropertiesApp</main.class>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>no.tornado.fxsample</groupId>

@@ -11,8 +11,9 @@ class DemoTreeViews : View() {
         with(root) {
             addClass(Styles.wrapper)
             vbox {
-                this += label("Based on parent-child relationships")
+                this += label(parentChildLabel)
                 treeview<Group> {
+                    id = childParentView
                     root = TreeItem(group)
                     root.isExpanded = true
                     cellFormat { text = it.name }
@@ -25,12 +26,11 @@ class DemoTreeViews : View() {
                 }
             }
             vbox {
-                label("based on a list")
-                val departments: List<Department> = persons
-                        .distinctBy { it.department }
-                        .map { Department(it.department) }
+                label(listLabel)
 
                 treeview<PersonTreeItem>(TreeItem(TreeRoot)) {
+                    id = departmentsPersonView
+
                     cellFormat { text = it.name }
 
                     onUserSelect { println(it) }
@@ -45,5 +45,13 @@ class DemoTreeViews : View() {
                 }
             }
         }
+    }
+
+    companion object {
+        const val parentChildLabel = "Based on parent-child relationships"
+        const val listLabel = "based on a list"
+
+        const val childParentView = "childParentView"
+        const val departmentsPersonView = "departmentPersonView"
     }
 }

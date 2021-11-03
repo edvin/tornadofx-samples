@@ -11,6 +11,10 @@
 
     <artifactId>login</artifactId>
 
+    <properties>
+        <main.class>no.tornado.fxsample.login.LoginApp</main.class>
+    </properties>
+
     <name>Login screen, save credentials, show workbench on successful login.</name>
     <description>Login with admin/secret to access the workbench.</description>
 
