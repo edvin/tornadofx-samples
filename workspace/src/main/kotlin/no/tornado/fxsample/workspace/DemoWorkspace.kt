@@ -1,16 +1,10 @@
 package no.tornado.fxsample.workspace
 
 import javafx.application.Platform
-import javafx.beans.property.SimpleBooleanProperty
 import javafx.scene.control.Menu
 import javafx.scene.control.MenuItem
-import javafx.scene.control.TextArea
 import tornadofx.*
-import java.io.IOException
-import java.io.OutputStream
 import java.io.PrintStream
-import java.nio.charset.Charset
-import java.util.*
 
 /**
  * Created by miguelius on 04/09/2017.
@@ -21,7 +15,7 @@ class DemoWorkspace : Workspace("Editor") {
     init {
         menubar {
             menu("File") {
-                item("New").action {
+                item("New") { id = newMenuItemId }.action {
                     //workspace.dock(mainView, true)
                     log.info("Opening text file")
                     workspace.dock(editorController.newEditor(), true)
@@ -84,6 +78,10 @@ class DemoWorkspace : Workspace("Editor") {
                 }
             }
         }
+    }
+
+    companion object {
+        const val newMenuItemId = "newFile"
     }
 
 }
