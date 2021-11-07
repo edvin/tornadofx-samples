@@ -1,7 +1,6 @@
 package no.tornado.fxsample.workspace
 
-import tornadofx.Controller
-import tornadofx.observable
+import tornadofx.*
 import java.io.File
 import java.nio.charset.Charset
 
@@ -18,7 +17,7 @@ class EditorController : Controller() {
     /**
      * the list of open text editors
      */
-    val editorModelList = mutableListOf<TextEditorFragment>().observable()
+    val editorModelList = mutableListOf<TextEditorFragment>().asObservable()
 
     fun newEditor(): TextEditorFragment {
         val newFile = DocumentViewModel()
