@@ -6,9 +6,8 @@ import tornadofx.*
 import java.io.IOException
 import java.io.OutputStream
 import java.nio.charset.Charset
-import java.util.*
 
-class TextEditorFragment(val documentViewModel: DocumentViewModel) : Fragment(){
+class TextEditorFragment(private val documentViewModel: DocumentViewModel) : Fragment(){
     override val root = pane {
         title = documentViewModel.title.value
         textarea (documentViewModel.text) {
@@ -40,7 +39,7 @@ class TextEditorFragment(val documentViewModel: DocumentViewModel) : Fragment(){
 
 
 class EmptyView : View() {
-    val controller: EditorController by inject()
+    private val controller: EditorController by inject()
     override val root = label(controller.quote())
 }
 
@@ -49,7 +48,7 @@ class EmptyView : View() {
  *
  * Binds an output stream to a textarea
  */
-class TextAreaOutputStream(val textArea: TextArea): OutputStream() {
+class TextAreaOutputStream(private val textArea: TextArea): OutputStream() {
 
     /**
      * This doesn't support multibyte characters streams like utf8
@@ -65,7 +64,7 @@ class TextAreaOutputStream(val textArea: TextArea): OutputStream() {
     @Throws(IOException::class)
     override fun write(b: ByteArray, off: Int, len: Int) {
         // redirects data to the text area
-        textArea.appendText(String(Arrays.copyOf(b, len), Charset.defaultCharset()))
+        textArea.appendText(String(b.copyOf(len), Charset.defaultCharset()))
         // scrolls the text area to the end of data
         textArea.scrollTop = java.lang.Double.MAX_VALUE
     }

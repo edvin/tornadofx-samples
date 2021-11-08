@@ -24,7 +24,7 @@ class CenterView : View() {
     }
 }
 
-class EntryDetailView() : View() {
+class EntryDetailView : View() {
     private val controller: MainController by inject()
     override val root = form {
         fieldset("entry detail information") {

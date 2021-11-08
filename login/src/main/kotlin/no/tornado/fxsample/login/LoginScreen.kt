@@ -4,7 +4,6 @@ import javafx.animation.KeyFrame
 import javafx.animation.Timeline
 import javafx.beans.property.SimpleBooleanProperty
 import javafx.beans.property.SimpleStringProperty
-import javafx.event.EventHandler
 import javafx.util.Duration
 import no.tornado.fxsample.login.Styles.Companion.loginScreen
 import tornadofx.*
@@ -30,7 +29,7 @@ class LoginScreen : View(screenTitle) {
             field(passwordLabel) {
                 passwordfield(model.password).required()
             }
-            field(remeberLabel) {
+            field(rememberLabel) {
                 checkbox(property = model.remember)
             }
         }
@@ -63,7 +62,7 @@ class LoginScreen : View(screenTitle) {
 
         val stage = FX.primaryStage
 
-        val timelineX = Timeline(KeyFrame(keyframeDuration, EventHandler {
+        val timelineX = Timeline(KeyFrame(keyframeDuration, {
             if (x == 0) {
                 stage.x = stage.x + move
                 x = 1
@@ -76,7 +75,7 @@ class LoginScreen : View(screenTitle) {
         timelineX.cycleCount = cycleCount
         timelineX.isAutoReverse = false
 
-        val timelineY = Timeline(KeyFrame(keyframeDuration, EventHandler {
+        val timelineY = Timeline(KeyFrame(keyframeDuration, {
             if (y == 0) {
                 stage.y = stage.y + move
                 y = 1
@@ -104,6 +103,6 @@ class LoginScreen : View(screenTitle) {
 
         const val usernameLabel = "Username"
         const val passwordLabel = "Password"
-        const val remeberLabel = "Remember me"
+        const val rememberLabel = "Remember me"
     }
 }

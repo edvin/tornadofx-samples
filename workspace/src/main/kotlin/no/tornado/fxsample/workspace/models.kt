@@ -7,7 +7,7 @@ import tornadofx.*
  */
 data class Document(var title : String = "", var text: String = "")
 
-class DocumentViewModel(var document: Document = Document()) : ItemViewModel<Document>() {
+class DocumentViewModel(private var document: Document = Document()) : ItemViewModel<Document>() {
     val title = bind { document.observable(Document::title) } as BindingAwareSimpleStringProperty
     val text = bind { document.observable(Document::text) } as BindingAwareSimpleStringProperty
 

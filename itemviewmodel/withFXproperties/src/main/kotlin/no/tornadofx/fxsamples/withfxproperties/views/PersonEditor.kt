@@ -6,8 +6,8 @@ import no.tornadofx.fxsamples.withfxproperties.model.PhoneNumber
 import tornadofx.*
 
 class PersonEditor : View() {
-    val controller: PersonController by inject()
-    var numbersTable: TableView<PhoneNumber> by singleAssign()
+    private val controller: PersonController by inject()
+    private var numbersTable: TableView<PhoneNumber> by singleAssign()
 
     override val root = form {
         fieldset("Personal Information") {

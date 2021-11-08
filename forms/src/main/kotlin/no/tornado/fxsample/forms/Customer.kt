@@ -10,7 +10,7 @@ class Customer(name: String? = null, birthday: String? = null, street: String? =
     val nameProperty = SimpleStringProperty(this, "name", name)
     var name: String by nameProperty
 
-    val birthdayProperty = SimpleObjectProperty<LocalDate>(LocalDate.parse(birthday))
+    val birthdayProperty = SimpleObjectProperty(LocalDate.parse(birthday))
     var birthday: LocalDate by birthdayProperty
 
     val streetProperty = SimpleStringProperty(this, "street", street)

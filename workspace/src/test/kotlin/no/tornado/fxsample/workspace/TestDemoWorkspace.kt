@@ -29,13 +29,13 @@ class TestDemoWorkspace : TestBase() {
         clickOn(lookup(".forward").queryLabeled())
         assertThat(lookup("New file 1").queryLabeled()).isVisible
 
-        clickOn(lookup(".text-area").queryAs<TextArea>(TextArea::class.java)).write(textToWrite)
+        clickOn(lookup(".text-area").queryAs(TextArea::class.java)).write(textToWrite)
         clickOn(lookup(".save").queryLabeled())
 
         clickOn(lookup(".back").queryLabeled())
-        assertThat(lookup(".text-area").queryAs<TextArea>(TextArea::class.java).text).isBlank
+        assertThat(lookup(".text-area").queryAs(TextArea::class.java).text).isBlank
 
         clickOn(lookup(".forward").queryLabeled())
-        assertThat(lookup(".text-area").queryAs<TextArea>(TextArea::class.java).text).isEqualTo(textToWrite)
+        assertThat(lookup(".text-area").queryAs(TextArea::class.java).text).isEqualTo(textToWrite)
     }
 }
