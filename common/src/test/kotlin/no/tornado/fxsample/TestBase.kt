@@ -1,6 +1,5 @@
 package no.tornado.fxsample
 
-import javafx.scene.Scene
 import javafx.scene.layout.Region
 import javafx.stage.Stage
 import org.testfx.api.FxToolkit

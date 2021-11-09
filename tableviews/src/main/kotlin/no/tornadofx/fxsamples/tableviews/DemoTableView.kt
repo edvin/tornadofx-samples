@@ -12,7 +12,7 @@ class DemoTableView : View() {
             row {
                 vbox {
                     label("Tableview from a map")
-                    tableview(FXCollections.observableArrayList<Map.Entry<String, Int>>(mapTableContent.entries)) {
+                    tableview(FXCollections.observableArrayList(mapTableContent.entries)) {
                         id = tableViewId
                         readonlyColumn("Item", Map.Entry<String, Int>::key)
                         readonlyColumn("Count", Map.Entry<String, Int>::value)

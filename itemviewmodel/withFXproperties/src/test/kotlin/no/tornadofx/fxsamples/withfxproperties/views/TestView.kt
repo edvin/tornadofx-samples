@@ -14,7 +14,7 @@ import kotlin.test.Test
 
 class TestView: TestBase() {
 
-    lateinit var persons: ObservableList<Person>
+    private lateinit var persons: ObservableList<Person>
 
     override fun initView() {
         showView<ItemViewModelWithFxMainView, WithFXPropertiesApp>()

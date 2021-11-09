@@ -13,7 +13,7 @@ class ChartView : View("Charts") {
 
     init {
         with (root) {
-            row() {
+            row {
                 piechart ("Imported Fruits") {
                     data("Grapefruit", 12.0)
                     data("Oranges", 25.0)

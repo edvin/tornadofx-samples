@@ -1,5 +1,10 @@
-import javafx.application.Application
-import javafx.beans.property.*
+package pdf
+
+import javafx.beans.binding.BooleanBinding
+import javafx.beans.property.SimpleFloatProperty
+import javafx.beans.property.SimpleIntegerProperty
+import javafx.beans.property.SimpleObjectProperty
+import javafx.beans.property.SimpleStringProperty
 import javafx.embed.swing.SwingFXUtils
 import javafx.geometry.Pos
 import javafx.scene.effect.BlurType
@@ -32,14 +37,14 @@ class PdfViewerApp : App(PdfViewer::class) {
 
 class PdfViewModel : ViewModel() {
     var documentURIString = SimpleStringProperty("")
-    var documentURI = SimpleObjectProperty<URI>(URI(""))
-    var documentInputStream = SimpleObjectProperty<InputStream>()
-    var document: PDDocument? = null
-    var pdfRenderer: PDFRenderer? = null
+    private var documentURI = SimpleObjectProperty(URI(""))
+    private var documentInputStream = SimpleObjectProperty<InputStream>()
+    private var document: PDDocument? = null
+    private var pdfRenderer: PDFRenderer? = null
     val currentPage = SimpleObjectProperty<Image>(WritableImage(1, 1))
     val currentPageNumber = SimpleIntegerProperty(0)
     val pageCount = SimpleIntegerProperty(0)
-    val scale = SimpleFloatProperty(1f)
+    private val scale = SimpleFloatProperty(1f)
 
     init {
         documentInputStream.onChange { input ->
@@ -66,11 +71,11 @@ class PdfViewModel : ViewModel() {
         }
         currentPageNumber.onChange { n ->
             openPage(n)
-            log.info("Cambio a pagina ${n}")
+            log.info("Cambio a pagina $n")
         }
     }
 
-    fun openPage(pageCounter: Int) {
+    private fun openPage(pageCounter: Int) {
         val bim = pdfRenderer?.renderImage(pageCounter, scale.value)//pdfRenderer?.renderImageWithDPI(pageCounter, 300)
         if (bim != null) {
             currentPage.value = SwingFXUtils.toFXImage(bim, null)
@@ -93,13 +98,13 @@ class PdfViewModel : ViewModel() {
         currentPageNumber.value = pageCount.value - 1
     }
 
-    var isFirst = currentPageNumber.isEqualTo(0)
+    var isFirst: BooleanBinding = currentPageNumber.isEqualTo(0)
 
-    var isLast = currentPageNumber.isEqualTo(pageCount - 1)
+    var isLast: BooleanBinding = currentPageNumber.isEqualTo(pageCount - 1)
 }
 
 class PdfViewer : Fragment("Pdf Viewer") {
-    val pdfModel: PdfViewModel by inject()
+    private val pdfModel: PdfViewModel by inject()
 
     override val root = borderpane {
         top = hbox(spacing = 10) {

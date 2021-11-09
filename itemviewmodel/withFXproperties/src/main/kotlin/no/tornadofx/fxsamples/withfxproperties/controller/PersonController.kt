@@ -1,13 +1,14 @@
 package no.tornadofx.fxsamples.withfxproperties.controller
 
 import javafx.collections.FXCollections
+import javafx.collections.ObservableList
 import no.tornadofx.fxsamples.withfxproperties.model.Person
 import no.tornadofx.fxsamples.withfxproperties.model.PersonModel
 import no.tornadofx.fxsamples.withfxproperties.model.PhoneNumber
 import tornadofx.Controller
 
 class PersonController : Controller() {
-    val persons = FXCollections.observableArrayList<Person>()
+    val persons: ObservableList<Person> = FXCollections.observableArrayList()
     val selectedPerson = PersonModel()
 
     companion object {

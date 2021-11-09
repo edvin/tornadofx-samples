@@ -12,7 +12,7 @@ class EditorController : Controller() {
     /**
      * random quotes from resource quotes.txt
      */
-    val quotes = File(javaClass.getResource("quotes.txt").toURI()).readLines(Charset.forName("UTF-8"))
+    private val quotes = File(javaClass.getResource("quotes.txt").toURI()).readLines(Charset.forName("UTF-8"))
 
     /**
      * the list of open text editors

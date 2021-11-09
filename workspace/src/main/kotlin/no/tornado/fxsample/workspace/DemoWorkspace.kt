@@ -10,7 +10,7 @@ import java.io.PrintStream
  * Created by miguelius on 04/09/2017.
  */
 class DemoWorkspace : Workspace("Editor") {
-    val editorController: EditorController by inject()
+    private val editorController: EditorController by inject()
 
     init {
         menubar {
