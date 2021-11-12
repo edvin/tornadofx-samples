@@ -1,5 +1,6 @@
 package no.tornado.fxsample.forms
 
+import impl.org.controlsfx.skin.NotificationBar
 import javafx.scene.control.Button
 import javafx.scene.control.DatePicker
 import javafx.scene.input.KeyCode
@@ -29,5 +30,8 @@ class CustomerFormTest: TestBase() {
         assertThat(saveButton).isDisabled
         clickOn("#city").write("Ringwood").push(KeyCode.ENTER)
         assertThat(saveButton).isEnabled
+
+        clickOn(saveButton)
+        assertThat(lookup(".notification-bar").queryAs(NotificationBar::class.java).title).isEqualTo("Customer saved!")
     }
 }
