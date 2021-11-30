@@ -3,33 +3,21 @@ package no.tornadofx.fxsamples.withfxproperties.model
 import javafx.beans.property.SimpleIntegerProperty
 import javafx.beans.property.SimpleListProperty
 import javafx.beans.property.SimpleStringProperty
-import javafx.collections.FXCollections
-import javafx.collections.ObservableList
-import tornadofx.ItemViewModel
-import tornadofx.getProperty
-import tornadofx.property
+import tornadofx.*
 
-class PhoneNumber(countryCode: String, number: String) {
-    private var countryCode: String by property(countryCode)
-    fun countryCodeProperty() = getProperty(PhoneNumber::countryCode)
-
-    private var number: String by property(number)
-    fun numberProperty() = getProperty(PhoneNumber::number)
+class PhoneNumber(countryCode: String = "", number: String = "") {
+    val countryCodeProperty = SimpleStringProperty(countryCode)
+    val numberProperty = SimpleStringProperty(number)
 }
 
-class Person(id: Int, name: String, phoneNumbers: List<PhoneNumber>) {
-    var id: Int by property(id)
-    fun idProperty() = SimpleIntegerProperty(getProperty(Person::id).value)
-
-    var name: String by property(name)
-    fun nameProperty() = SimpleStringProperty(getProperty(Person::name).value)
-
-    private var phoneNumbers: ObservableList<PhoneNumber> by property(FXCollections.observableArrayList(phoneNumbers))
-    fun phoneNumbersProperty() = SimpleListProperty(getProperty(Person::phoneNumbers).value)
+class Person(id: Int = -1, name: String = "", phoneNumbers: List<PhoneNumber> = emptyList()) {
+    val idProperty = SimpleIntegerProperty(id)
+    val nameProperty = SimpleStringProperty(name)
+    val phoneNumbersProperty = SimpleListProperty(phoneNumbers.asObservable())
 }
 
 class PersonModel : ItemViewModel<Person>() {
-    val id = bind { item?.idProperty() }
-    val name = bind { item?.nameProperty() }
-    val phoneNumbers = bind { item?.phoneNumbersProperty() }
+    val id = bind(Person::idProperty)
+    val name = bind(Person::nameProperty)
+    val phoneNumbers = bind(Person::phoneNumbersProperty)
 }

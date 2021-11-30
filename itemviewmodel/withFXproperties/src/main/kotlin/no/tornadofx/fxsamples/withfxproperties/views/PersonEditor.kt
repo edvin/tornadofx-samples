@@ -15,8 +15,14 @@ class PersonEditor : View() {
                 textfield(controller.selectedPerson.name) { id = "infoName" }
             }
             button("Save") {
-                setOnAction {
-                    controller.selectedPerson.commit()
+                enableWhen(controller.selectedPerson.dirty)
+                action {
+                    save()
+                }
+            }
+            button("Reset") {
+                action {
+                    controller.selectedPerson.rollback()
                 }
             }
         }
@@ -35,11 +41,15 @@ class PersonEditor : View() {
                     setOnAction {
                         val newNumber = PhoneNumber("", "")
                         controller.selectedPerson.phoneNumbers.value.add(newNumber)
-                        numbersTable.selectionModel.select(newNumber)
+                        numbersTable.selectionModel.select(numbersTable.items.size - 1)
                         numbersTable.edit(numbersTable.items.size - 1, numbersTable.columns.first())
                     }
                 }
             }
         }
+    }
+
+    private fun save() {
+        controller.selectedPerson.commit()
     }
 }

@@ -11,7 +11,9 @@ class PersonList : View() {
         id = "personList"
         column("Id", Person::idProperty)
         column("Name", Person::nameProperty)
-        bindSelected(controller.selectedPerson)
+        controller.selectedPerson.rebindOnChange(this) { selectedPerson ->
+            item = selectedPerson ?: Person()
+        }
         smartResize()
     }
 }
