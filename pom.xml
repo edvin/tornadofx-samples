@@ -23,7 +23,7 @@
 
     <properties>
         <tornadofx.version>1.7.20</tornadofx.version>
-        <kotlin.version>1.5.31</kotlin.version>
+        <kotlin.version>1.6.0</kotlin.version>
         <kotlin.compiler.jvmTarget>1.8</kotlin.compiler.jvmTarget>
     </properties>
 
